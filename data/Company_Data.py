@@ -1,6 +1,6 @@
 import pandas as pd
 
-listed_companies = pd.read_csv('data/Listed_Companies.csv')
+listed_companies = pd.read_csv('Listed_Companies.csv')
 
 columns = listed_companies.columns
 
