@@ -1,0 +1,1 @@
+python Stock_Analysis_GUI.py

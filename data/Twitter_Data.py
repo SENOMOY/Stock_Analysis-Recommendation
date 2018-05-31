@@ -1,4 +1,5 @@
 import tweepy
+import pandas as pd
 
 # Define twitter authentication variables
 consumer_key = "D1grpQXVpRja1tfgEskvvJrbo"
@@ -18,9 +19,36 @@ def searchTweets(company_list):
         # Language code (follows ISO 639-1 standards)
         language = "en"
         # Calling the user_timeline function with our parameters
-        results = api.search(q=company, rpp=1000,count=1000, result_type="recent", lang=language)
-        for tweet in results:
-            # printing the text stored inside the tweet object
-            print(tweet.text)
+        result = api.search(q="\"" + company +"\"", rpp=1000,count=1000, result_type="recent", lang=language)
+        toDataFrame(result).to_csv('TWEETS/'+company+'.csv')
 
-searchTweets(["microsoft"])
+def toDataFrame(tweets):
+
+    DataSet = pd.DataFrame()
+    DataSet['tweetID'] = [tweet.id for tweet in tweets]
+    DataSet['tweetText'] = [tweet.text for tweet in tweets]
+    DataSet['tweetRetweetCt'] = [tweet.retweet_count for tweet
+    in tweets]
+    DataSet['tweetFavoriteCt'] = [tweet.favorite_count for tweet
+    in tweets]
+    DataSet['tweetSource'] = [tweet.source for tweet in tweets]
+    DataSet['tweetCreated'] = [tweet.created_at for tweet in tweets]
+
+    DataSet['userID'] = [tweet.user.id for tweet in tweets]
+    DataSet['userScreen'] = [tweet.user.screen_name for tweet
+    in tweets]
+    DataSet['userName'] = [tweet.user.name for tweet in tweets]
+    DataSet['userCreateDt'] = [tweet.user.created_at for tweet
+    in tweets]
+    DataSet['userDesc'] = [tweet.user.description for tweet in tweets]
+    DataSet['userFollowerCt'] = [tweet.user.followers_count for tweet
+    in tweets]
+    DataSet['userFriendsCt'] = [tweet.user.friends_count for tweet
+    in tweets]
+    DataSet['userLocation'] = [tweet.user.location for tweet in tweets]
+    DataSet['userTimezone'] = [tweet.user.time_zone for tweet
+    in tweets]
+
+    return DataSet
+
+#searchTweets(["Microsoft Corporation"])
