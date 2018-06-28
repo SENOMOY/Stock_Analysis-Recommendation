@@ -38,3 +38,5 @@ def linearRegressionPrediction(company_ticker,company):
 	plt.ylabel('Projected Price')
 	plt.xlabel('Days')
 	plt.show()
+	plt.draw()
+	return plt

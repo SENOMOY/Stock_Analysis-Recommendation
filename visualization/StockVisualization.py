@@ -12,3 +12,5 @@ def generateTimeSeriesPlot(company_ticker,company):
     plt.xlabel('Date', fontsize=15)
     plt.ylabel('Price', fontsize=15)
     plt.show()
+    plt.draw()
+    return plt
