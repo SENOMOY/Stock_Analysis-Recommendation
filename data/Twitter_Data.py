@@ -42,7 +42,7 @@ def getSentimentResult(company):
     labels = 'Positive', 'Negative', 'Neutral'
     sizes = [positive, negative, neutral]
     colors = ['green', 'red', 'grey']
-    explode = (0, 0, 0)  # explode 1st slice
+    explode = (0.1, 0, 0)  # explode 1st slice
     # Plot
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,autopct='%1.1f%%', shadow=True, startangle=140)
     # Plot
