@@ -6,3 +6,4 @@ pandas_datareader==0.5.0
 numpy==1.12.1
 pandas==0.22.0
 scikit_learn==0.19.1
+quandl==3.3.0

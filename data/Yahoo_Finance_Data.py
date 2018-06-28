@@ -3,13 +3,14 @@ import fix_yahoo_finance as yf
 yf.pdr_override()
 import datetime
 from datetime import timedelta
-from tkinter import messagebox
-import sys
 
+# Present day
 END_DATE = datetime.datetime.now().date()
-START_DATE = END_DATE - timedelta(days=365)
+# 5 years back
+START_DATE = END_DATE - timedelta(days=1825)
 
 def build_stock_dataset(companies):
+    flag = False
     for company in companies:
         # Get all Adjusted Close prices for all the tickers in our list, between START_DATE and END_DATE
         all_data = pdr.get_data_yahoo(company, START_DATE, END_DATE)
@@ -19,6 +20,7 @@ def build_stock_dataset(companies):
             #stock_data.dropna(how='all',inplace=True)
             stock_data.ffill(inplace=True)
             stock_data.to_csv('data/stock_prices/'+company+'.csv')
+            flag = True
         else:
-            messagebox.showinfo('Error fetching data','No data available for '+company)
-            sys.exit(0)
+            flag = False
+    return flag

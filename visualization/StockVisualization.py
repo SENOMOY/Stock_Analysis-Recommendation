@@ -1,15 +1,14 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from data.Yahoo_Finance_Data import build_stock_dataset
 
 def generateTimeSeriesPlot(company_ticker,company):
-    build_stock_dataset([company_ticker])
     data = pd.read_csv("data/stock_prices/"+company_ticker+".csv")
-    time = pd.to_datetime(data.iloc[:, 0])
-    price = data.iloc[:, 1]
+    data.columns = ['Date', 'Adj. Close']
     fig = plt.gcf()
-    fig.canvas.set_window_title(company)
+    fig.canvas.set_window_title("Time series plot")
     plt.title(company)
-    plt.plot(time,price)
-    plt.interactive(False)
-    plt.show(block=True)
+    plt.plot(range(data.shape[0]), data['Adj. Close'])
+    plt.xticks(range(0, data.shape[0], 100), data['Date'].loc[::60], rotation=35)
+    plt.xlabel('Date', fontsize=15)
+    plt.ylabel('Price', fontsize=15)
+    plt.show()

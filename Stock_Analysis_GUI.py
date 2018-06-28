@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
 from data.Company_Data import getCompanyData
-from visualization.StockVisualization import generateTimeSeriesPlot
+from report.GenerateReport import generateReport
 
 root = Tk()
 root.title("Stock Analysis")
@@ -57,7 +57,7 @@ def getAdvisory():
     .dropna().unique()[0]
     messagebox.showinfo('','Running Stock Advisory for '+company_tnktr.get()+' from ' + exchange_tnktr.get()
                         + ' exchange of ' + country_tnktr.get())
-    generateTimeSeriesPlot(company_ticker,company_tnktr.get())
+    generateReport(company_ticker, company_tnktr.get())
     resetOptions(popupMenu2, exchange_tnktr, 'Select Exchange')
     popupMenu2.config(state=DISABLED)
     popupMenu3.config(state=DISABLED)
