@@ -49,6 +49,7 @@ def getSentimentResult(company):
     fig = plt.gcf()
     fig.canvas.set_window_title("Sentiment Analysis")
     plt.axis('equal')
+    plt.title(company)
     plt.show()
     plt.draw()
     return plt

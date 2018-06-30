@@ -1,6 +1,7 @@
 from tkinter import messagebox
-from visualization.StockVisualization import generateTimeSeriesPlot
-from prediction.LinearRegression import linearRegressionPrediction
+from analysis.TimeSeriesPlot import generateTimeSeriesPlot
+from prediction.LinearRegression_Prediction import linearRegressionPrediction
+from prediction.LSTM_Prediction import lstmPrediction
 from data.Yahoo_Finance_Data import build_stock_dataset
 from data.Twitter_Data import getSentimentResult
 
@@ -11,6 +12,8 @@ def generateReport(company_ticker,company):
 		generateTimeSeriesPlot(company_ticker,company)
 		print('Running Linear Regression Prediction...')
 		linearRegressionPrediction(company_ticker,company)
+		print('Running LSTM Prediction...')
+		lstmPrediction(company_ticker,company)
 		print('Running Sentiment Analysis...')
 		getSentimentResult(company)
 	else:

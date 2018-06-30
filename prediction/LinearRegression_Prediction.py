@@ -32,11 +32,13 @@ def linearRegressionPrediction(company_ticker,company):
 		print(price)
 	# Plot
 	fig = plt.gcf()
-	fig.canvas.set_window_title("Price Prediction")
+	fig.canvas.set_window_title("Price Prediction (Linear Regression)")
 	plt.title(company)
 	plt.plot(forecast_prediction)
 	plt.ylabel('Projected Price')
 	plt.xlabel('Days')
+	figManager = plt.get_current_fig_manager()
+	figManager.window.showMaximized()
 	plt.show()
 	plt.draw()
 	return plt
